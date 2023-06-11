@@ -6,7 +6,7 @@ import learn.utils.CommonUtils;
  * 计数排序
  *  时间复杂度  N+K
  *  空间复杂度  N+K
- *  不稳定
+ *  不稳定(优化后可稳定)
  *
  * @author JiangJian
  * @date 2023/06/10 23:00
@@ -35,10 +35,20 @@ public class Counting {
         }
 
         // 遍历计数器 重新生成新数组
-        for (int i = 0, j = 0; i < count.length; i++) {
-            while (count[i]-- > 0) {
-                result[j++] = i;
-            }
+//        for (int i = 0, j = 0; i < count.length; i++) {
+//            while (count[i]-- > 0) {
+//                result[j++] = i;
+//            }
+//        }
+
+        for (int i = 1; i < count.length; i++) {
+            // 累加数组
+            count[i] = count[i] + count[i - 1];
+        }
+
+        // 倒序迭代
+        for (int i = arr.length - 1; i >= 0; i--) {
+            result[--count[arr[i]]] = arr[i];
         }
 
         return result;
