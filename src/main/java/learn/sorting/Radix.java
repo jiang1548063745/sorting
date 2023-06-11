@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 /**
  * 基数排序(多关键字排序)
+ *  时间复杂度
+ *  空间复杂度
  *
  * @author JiangJian
  * @date 2023/06/10 23:01
@@ -21,6 +23,9 @@ public class Radix {
         CommonUtils.printArr(result);
     }
 
+    /**
+     *
+     */
     public static int[] sort(int[] arr) {
         int[] result = new int[arr.length];
 
@@ -31,9 +36,9 @@ public class Radix {
             int division = (int)Math.pow(10, i);
             System.out.println(">倍数:" +division);
 
-            for (int j = 0; j < arr.length; j++) {
+            for (int k : arr) {
                 // 根据规则取余数
-                int num = arr[j] / division % 10;
+                int num = k / division % 10;
 
                 System.out.println(" >>余数:" + num);
 
@@ -52,7 +57,9 @@ public class Radix {
 
             // 拓扑到新数组
             for (int n = arr.length - 1; n >= 0; n--) {
+                // 确定余数
                 int num = arr[n] / division % 10;
+                // 根据余数再计数器记录的位置拓扑到结果中
                 result[--count[num]] = arr[n];
             }
 
