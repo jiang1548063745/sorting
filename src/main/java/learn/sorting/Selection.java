@@ -15,6 +15,7 @@ public class Selection {
 
     /**
      * 从数组中找到最小的元素 和首位置替换
+     * 根据数据序列移动首位置
      * 根据数据元素个数循环该步骤
      */
     public static void main(String[] args) {
